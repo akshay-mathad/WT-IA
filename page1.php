@@ -12,7 +12,7 @@ $servername = "localhost";
         }
 
 session_start();
-echo "Hello {$_SESSION['uid']}";
+echo "<h1>Tasks:</h1>";
 // Retrieve data from task table of current user from database
 $userId = $_SESSION['uid'];
 $sql = "SELECT * FROM task WHERE U_id = '$userId'";
@@ -23,11 +23,12 @@ if ($result->num_rows > 0) {
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
             // Process retrieved data
-            echo "<div>";
+            echo "<card>";
+            
             echo "<p>Task Title: " . $row['TaskTitle'] . "</p>";
             echo "<p>Description: " . $row['Description'] . "</p>";
             echo "<p>Date of Completion: " . $row['DOC'] . "</p>";
-            echo "</div>";
+            echo "</card>";
         }
     }
 
@@ -42,18 +43,22 @@ if ($result->num_rows > 0) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="page1.css" rel="stylesheet">
     <title>Document</title>
 </head>
 
 <body>
 
-    <div>
-        <a href="Registration.php">Registration</a>
-        <a href="Login.php">Login</a>
-        <a href="createTask.php">Create Task</a>
-        <a href="modifyTask.php">Modify Task</a>
-        <a href="deleteTask.php">Delete Task</a>
-    </div>
+    <opt>
+        <a href="createTask.php"style="color:yellow">Create Task</a>
+        <a href="modifyTask.php"style="color:yellow">Modify Task</a>
+        <a href="deleteTask.php"style="color:yellow">Delete Task</a>
+    </opt>
+    <span>
+        <a ="Registration.php" style="color:yellow">Registration</a><br>
+        <a href="Login.php"style="color:yellow">Login</a>
+        
+    </span>
 </body>
 
 </html>
